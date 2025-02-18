@@ -10,8 +10,8 @@ COPY requirements.txt /tmp/
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 # Copier le script d'import et le rendre exécutable
-COPY src/data/import_data.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/import_data.sh
+COPY src/data/import_data.sh /home/jovyan/work/
+RUN chmod +x /home/jovyan/work/import_data.sh
 
 # Copier les fichiers source
 COPY src/ /home/jovyan/work/

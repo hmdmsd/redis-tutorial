@@ -34,7 +34,14 @@ services:
       - ./src:/home/jovyan/work
     depends_on:
       - redis
-    command: bash -c "sleep 5 && /usr/local/bin/import_data.sh"
-
+    command: bash -c "sleep 5 && /home/jovyan/work/import_data.sh"
+  mongo:
+    image: mongo
+    restart: always
+    ports: 
+    - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 volumes:
   redis_data:
