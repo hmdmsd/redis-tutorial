@@ -1,9 +1,13 @@
 version: "3.8"
 services:
   redis:
-    image: redis:latest
+    image: redis/redis-stack:latest
     ports:
       - "6379:6379"
+      - "8001:8001"
+    volumes:
+      - ./src/data:/data
+      - redis_data:/redis_data
 
   jupyter:
     build: .
@@ -13,3 +17,6 @@ services:
       - ./src:/app/src
     depends_on:
       - redis
+
+volumes:
+  redis_data:
