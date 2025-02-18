@@ -9,6 +9,19 @@ services:
       - ./src/data:/data
       - redis_data:/redis_data
 
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - "5540:5540"  
+    volumes:
+      - redisinsight-data:/data
+    restart: always
+    depends_on:
+      - redis
+  # Accès via http://localhost:5540
+  # URL pour ajouter la database sur redis: redis://redis:6379
+
   notebook:
     image: grosinosky/bigdata_fila3_jupyter
     build:
@@ -38,3 +51,4 @@ services:
 
 volumes:
   redis_data:
+  redisinsight-data:
