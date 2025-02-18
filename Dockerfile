@@ -16,9 +16,10 @@ RUN chmod +x /usr/local/bin/import_data.sh
 # Copier les fichiers source
 COPY src/ /home/jovyan/work/
 
+# Ajouter le chemin du module à PYTHONPATH
+ENV PYTHONPATH="${PYTHONPATH}:/home/jovyan/work"
+
 # Changer les permissions
 RUN chown -R jovyan:users /home/jovyan/work
 
 USER jovyan
-
-# Le répertoire de travail sera automatiquement /home/jovyan
